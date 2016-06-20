@@ -1,6 +1,3 @@
-import Validation.Person
-import ValidationScalaz.Person
-
 import scala.util.{Failure, Success}
 import scalaz.{Failure => ZFailure, NonEmptyList, Success => ZSuccess}
 

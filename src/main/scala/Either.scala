@@ -1,4 +1,5 @@
-import scalaz.\/
+import scalaz._
+import Scalaz._
 
 object Either {
   object vanilla {
@@ -10,6 +11,10 @@ object Either {
   }
 
   object scalaz {
-    def flatMap(e1 : \/[String, Int], e2: \/[String, Int]) : \/[String, Int] = sys.error("todo")
+    def flatMap(e1 : \/[String, Int], e2: \/[String, Int]) : \/[String, Int] =
+      for {
+        v1 <- e1
+        v2 <- e2
+      } yield v1 + v2
   }
 }

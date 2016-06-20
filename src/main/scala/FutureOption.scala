@@ -1,3 +1,8 @@
+import scalaz._
+import scalaz.OptionT._
+import scalaz.std.option._
+import scalaz.std.scalaFuture._
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
@@ -19,7 +24,12 @@ object FutureOption {
   }
 
   object scalaz {
-    def flatMap(fo1: Future[Option[Int]], fo2: Future[Option[Int]]): Future[Option[Int]] = sys.error("todo")
+    def flatMap(fo1: Future[Option[Int]], fo2: Future[Option[Int]]): Future[Option[Int]] = {
+      (for {
+        o1 <- optionT(fo1)
+        o2 <- optionT(fo2)
+      } yield o1 + o2).run
+    }
   }
 
 }

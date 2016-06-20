@@ -1,3 +1,10 @@
+import scalaz._
+import scalaz.syntax.all._
+import scalaz.std.list._
+import scalaz.std.option._
+import scalaz.std.either._
+
+
 object Sequence {
 
   object vanilla {
@@ -25,8 +32,8 @@ object Sequence {
   }
 
   object scalaz {
-    def sequence(s: Seq[Option[Int]]): Option[List[Int]] = sys.error("todo")
+    def sequence(s: Seq[Option[Int]]): Option[List[Int]] = s.toList.sequenceU
 
-    def sequenceEither(s: Seq[Either[String, Int]]): Either[String, List[Int]] = sys.error("todo")
+    def sequenceEither(s: Seq[Either[String, Int]]): Either[String, List[Int]] = s.toList.sequenceU
   }
 }

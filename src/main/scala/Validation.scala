@@ -1,5 +1,8 @@
 import scala.util.{Failure, Success, Try}
 import scalaz._
+import Scalaz._
+import scalaz.Validation._
+import scalaz.NotNothing._
 
 object Validation {
 
@@ -36,11 +39,20 @@ object Validation {
   object scalaz {
 
     object Person {
-      def apply(age: String, name: String): ValidationNel[Throwable, Person] = sys.error("todo")
+      def apply(age: String, name: String): ValidationNel[Throwable, Person] =
+        (validateAge(age) |@| validateName(name)) {
+          case (a, n) => Validation.Person(a, n)
+        }
 
-      def validateAge(s: String): ValidationNel[Throwable, Int] = sys.error("todo")
+      def validateAge(s: String): ValidationNel[Throwable, Int] = fromTryCatchNonFatal(s.toInt).toValidationNel
 
-      def validateName(s: String): ValidationNel[Throwable, String] = sys.error("todo")
+      def validateName(s: String): ValidationNel[Throwable, String] = {
+        if (s.length > 10) {
+          failureNel(new IllegalArgumentException("name too long"))
+        } else {
+          s.success
+        }
+      }
 
     }
 
