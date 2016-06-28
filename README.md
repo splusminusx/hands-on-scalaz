@@ -114,3 +114,4 @@ trait Monoid[F]  { self =>
 - [Typeclassopedia for scala](http://typeclassopedia.bitbucket.org/)
 - [scalaz 102](http://slides.com/coltfrederickson/scalaz-102-2-1#/)
 - [roll-your-own-scala](https://meta.plasm.us/posts/2015/07/11/roll-your-own-scala/)
+- [Scalaz Task - the missing documentation](http://timperrett.com/2014/07/20/scalaz-task-the-missing-documentation/)
